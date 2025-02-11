@@ -38,7 +38,7 @@ Antes de ejecutar este proyecto, asegúrate de tener instalados los siguientes c
 1. Clona este repositorio:
 
    ```bash
-   git clone https://github.com/margotvargas/Cucumber-Selenium-Ecommerce.git
+   git clone https://github.com/jmoralvi/Karate_exercise.git
 
 2. Ve al directorio del proyecto:
    cd tu-repositorio
