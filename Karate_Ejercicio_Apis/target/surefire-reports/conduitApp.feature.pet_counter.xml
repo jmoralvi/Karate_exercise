@@ -1,0 +1,16 @@
+<testsuite failures="0"
+           name="conduitApp/feature/pet_counter.feature"
+           skipped="0"
+           tests="1"
+           time="0.553706">
+   <testcase classname="conduitApp.feature.pet_counter"
+             name="Count names of pets"
+             time="0.553706">
+      <system-out>Given url 'https://petstore.swagger.io/v2/pet/findByStatus?status=available' . passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+* def pets = response ..................................................... passed
+* def nameCount = Java.type('PetCounter').countPetNames(pets) ............. passed
+* print nameCount ......................................................... passed</system-out>
+   </testcase>
+</testsuite>

@@ -1,0 +1,65 @@
+<testsuite failures="0"
+           name="conduitApp/feature/pestore.feature"
+           skipped="0"
+           tests="3"
+           time="4.108396">
+   <testcase classname="conduitApp.feature.pestore"
+             name="Crear usuario y recuperar sus datos"
+             time="2.500778">
+      <system-out>* def user = { "id": 1234, "username": "testUser", "firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "password": "password", "phone": "123456789", "userStatus": 1 } . passed
+Given url 'https://petstore.swagger.io/v2/user' ........................... passed
+And request user .......................................................... passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+Given url 'https://petstore.swagger.io/v2/user/testUser' .................. passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed</system-out>
+   </testcase>
+   <testcase classname="conduitApp.feature.pestore"
+             name="Obtener mascotas vendidas y procesar datos"
+             time="0.902085">
+      <system-out>* def user = { "id": 1234, "username": "testUser", "firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "password": "password", "phone": "123456789", "userStatus": 1 } . passed
+Given url 'https://petstore.swagger.io/v2/user' ........................... passed
+And request user .......................................................... passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+Given url 'https://petstore.swagger.io/v2/user/testUser' .................. passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+Given url 'https://petstore.swagger.io/v2/pet/findByStatus?status=available' . passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* def pets = response ..................................................... passed
+* def petNamesAndIds = [] ................................................. passed
+* karate.forEach(pets, function(pet) { petNamesAndIds.add({ name: pet.name, id: pet.id }) }) . passed
+* print petNamesAndIds .................................................... passed</system-out>
+   </testcase>
+   <testcase classname="conduitApp.feature.pestore"
+             name="Count names of pets"
+             time="0.705532">
+      <system-out>* def user = { "id": 1234, "username": "testUser", "firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "password": "password", "phone": "123456789", "userStatus": 1 } . passed
+Given url 'https://petstore.swagger.io/v2/user' ........................... passed
+And request user .......................................................... passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+Given url 'https://petstore.swagger.io/v2/user/testUser' .................. passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+Given url 'https://petstore.swagger.io/v2/pet/findByStatus?status=available' . passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* def pets = response ..................................................... passed
+* def petNamesAndIds = [] ................................................. passed
+* karate.forEach(pets, function(pet) { petNamesAndIds.add({ name: pet.name, id: pet.id }) }) . passed
+* print petNamesAndIds .................................................... passed
+Given url 'https://petstore.swagger.io/v2/pet/findByStatus?status=available' . passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+* def pets = response ..................................................... passed
+* def nameCount = Java.type('PetCounter').countPetNames(pets) ............. passed
+* print nameCount ......................................................... passed</system-out>
+   </testcase>
+</testsuite>

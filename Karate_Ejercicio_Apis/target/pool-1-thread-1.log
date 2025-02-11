@@ -1,0 +1,920 @@
+02:09:22.832 karate.env system property was:  
+02:09:22.854 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:24.047 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:24.689 response time in milliseconds: 640,47
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 9100741178b7af90-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:25 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=1n0%2FKUS22G5nhvaPHtrpxknGYaKRUJ1SI9t9gp3OIh4Vz31aXEbqDqGFpwZ%2FNKDbzCOlFL97qPBeD7R8x1X2a4ttvpwRsR7qMHwcRynAq0FWIrQQ6ACHLGAqUvjZkE8OZoqczs25pSpr3nFhYg%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=8014&min_rtt=6896&rtt_var=4822&sent=6&recv=9&lost=0&retrans=1&sent_bytes=4219&recv_bytes=676&delivery_rate=91660&cwnd=250&unsent_bytes=0&cid=ad0e0c5a542bfb56&ts=218&x=0"
+
+02:09:24.695 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:25.063 response time in milliseconds: 367,13
+2 < 530
+2 < CF-RAY: 91007413ab972153-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:25 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=SLSg3VBPm6glj6hZ6%2FVhB7D%2Fo8zRVuMz6fe9iKU%2Ffa99t1vfGz1Q0DWLHxWdlSSfXK8PMlZlfRY8i9f%2Bq8GnQlidehgoVn3yc1A3Bm2wp3jcy9TZIIGJTLqcZveYNT18lfra"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=13562&min_rtt=11737&rtt_var=6444&sent=6&recv=8&lost=0&retrans=0&sent_bytes=2842&recv_bytes=656&delivery_rate=146120&cwnd=250&unsent_bytes=0&cid=2885e73911e55d12&ts=115&x=0"
+error code: 1016
+
+02:09:25.066 status code was: 530, expected: 200, response time: 367, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:25.068 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 367, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:25.069 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 367, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:25.070 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:25.071 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 367, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:25.108 karate.env system property was:  
+02:09:25.111 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:25.162 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:25.204 response time in milliseconds: 41,41
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 91007414bbf2af90-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:25 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=lfR4kfnQpIJohb38VgpMAWE8RrP3Hfk8GcWPi7PpqXtqrQxA%2FSXdBzQSyhrPuxR4wq0ts7acvOk78ei5W1zBEsr%2ByLgVZ259WGu7oBrnjMaqs1dDPsIym8NFISV1M7Y%2FiiDM%2Bx2af7piSKg8cQ%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=10026&min_rtt=5041&rtt_var=5379&sent=3&recv=6&lost=0&retrans=0&sent_bytes=147&recv_bytes=633&delivery_rate=288038&cwnd=248&unsent_bytes=0&cid=6b4d5fe9044eb7b0&ts=15&x=0"
+
+02:09:25.206 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:25.350 response time in milliseconds: 142,64
+2 < 530
+2 < CF-RAY: 910074152fef69ee-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:26 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Sj%2FJZwkWE9A18LX2qXPvi9DjB3ClSt%2FpCF2v%2Bv0ynAfRrpDWicycxm2bkhoFnYgNOhPhSXmoLeUPzd%2BhbVgnQy1osT8PO7rL4FvSyROWF%2FRgWqH6I0Y28rnnR8Vv7zus4zGX"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=5891&min_rtt=5106&rtt_var=2741&sent=6&recv=8&lost=0&retrans=0&sent_bytes=2842&recv_bytes=688&delivery_rate=310057&cwnd=244&unsent_bytes=0&cid=308cf29ad3d9b9f8&ts=103&x=0"
+error code: 1016
+
+02:09:25.354 status code was: 530, expected: 200, response time: 143, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:25.357 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 143, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:25.358 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 143, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:25.384 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:25.385 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 143, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:28.983 karate.env system property was:  
+02:09:29.100 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:29.123 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.165 response time in milliseconds: 41,50
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 9100742d8afdcbbf-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:29 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=TQgrekqiGXwlgc%2F0VW%2FeDqZy%2BbOXuRXyGO9a3oWk4gi5Y7FNWcaqhre7myPDbtXGySSfwZgnWckMP4MGgqbLSwbjdmSzO%2FswUXK7rAehjsusx7usniYQwFWBFXMBEy4pGRrom8BwYEWroBsDGg%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=4452&min_rtt=3833&rtt_var=2677&sent=3&recv=6&lost=0&retrans=0&sent_bytes=147&recv_bytes=633&delivery_rate=165168&cwnd=250&unsent_bytes=0&cid=f602a2c0db15bf8d&ts=28&x=0"
+
+02:09:29.169 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.261 response time in milliseconds: 91,30
+2 < 530
+2 < CF-RAY: 9100742e29c63846-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:29 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Oac3NcTCfI1XQpzGahzu0Ovhu9UUIhhmjBj%2BttGJ4wmcbviTVL%2FqBsekiDmp0jrukm80Fjy9osshccBeovPS%2B6OPy1lguc3V6wX0%2BmwOIGgqiiEu9fhE%2BotZ3EAW04XrpMg8"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=11531&min_rtt=10837&rtt_var=4160&sent=5&recv=8&lost=0&retrans=0&sent_bytes=2841&recv_bytes=688&delivery_rate=190139&cwnd=252&unsent_bytes=0&cid=13f88a9ee1950e8e&ts=62&x=0"
+error code: 1016
+
+02:09:29.262 status code was: 530, expected: 200, response time: 91, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.263 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 91, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.265 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 91, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.266 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:29.266 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 91, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.283 karate.env system property was:  
+02:09:29.284 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:29.299 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.355 response time in milliseconds: 54,39
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 9100742ebc9cecab-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Pi6YPAQt3bQgBYJroAUA5Ghl7bFGVhFXI4K0wByYU6AHho1nFERdiOBVM8777PNtadArAsz4cIVCabGjblTHIffWkQA4XsK9SbDYmp7GhfTPGA8DqzErADXdUIxtMfe2ROj6ToT6UCjGO6gwVQ%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=3883&min_rtt=3823&rtt_var=1554&sent=3&recv=6&lost=0&retrans=0&sent_bytes=147&recv_bytes=633&delivery_rate=337125&cwnd=221&unsent_bytes=0&cid=7cfe76be7f03bc76&ts=19&x=0"
+
+02:09:29.356 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.429 response time in milliseconds: 72,57
+2 < 530
+2 < CF-RAY: 9100742f295c60ca-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=5efAwZY%2Fn3dhqrELgpbo1ny6K914Gajt8nv6y3be%2F%2FBuFR2ElRkTGW3EmeJ7afidD2e8fQamUDouuCTaSEJ%2BaOCYIPxadW%2F33PQToybRbLNstOppsfdEKVi6v6gzlLiAGhsh"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=4167&min_rtt=3255&rtt_var=2675&sent=5&recv=8&lost=0&retrans=0&sent_bytes=2841&recv_bytes=688&delivery_rate=674251&cwnd=225&unsent_bytes=0&cid=ea72fc9acc225041&ts=43&x=0"
+error code: 1016
+
+02:09:29.430 status code was: 530, expected: 200, response time: 73, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.431 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 73, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.431 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 73, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.432 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:29.432 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 73, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.473 karate.env system property was:  
+02:09:29.474 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:29.496 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.532 response time in milliseconds: 35,51
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 9100742fdc38afe3-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=lT9jIoPwJf%2FtJ5vb5BxbMxfgWLaStqNY%2BqQs8UGNfHnurYmkF5Hbc8BUvzpLlbnl3wxth5ETCc0CD0kxRfzcMfh6dzL%2Bb1XWlsgF8RB989GJaazRHyWPskDKKwAUPeubjyN%2FP3qz4dKMKtYwZg%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=7447&min_rtt=6180&rtt_var=3223&sent=3&recv=6&lost=0&retrans=0&sent_bytes=147&recv_bytes=633&delivery_rate=234951&cwnd=247&unsent_bytes=0&cid=a9b17f79a5b7d7b2&ts=17&x=0"
+
+02:09:29.533 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.580 response time in milliseconds: 46,24
+2 < 530
+2 < CF-RAY: 910074301c9b314e-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=mYAc3NeQP8bgpyFxFjr7toAaQtgQ2OPzHeMVc%2Fez1UfjRbKZt1HtyPAtUc8bnAkbbUB1ReKEepGRe3RJl2nRuwAT8CqqXTT2aFk16RjRLpGk1Pq0QpIOh9OiyFdNa4kdY%2BVJ"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=4161&min_rtt=3949&rtt_var=1432&sent=5&recv=8&lost=0&retrans=0&sent_bytes=2841&recv_bytes=688&delivery_rate=520243&cwnd=239&unsent_bytes=0&cid=b7edfb10a24e4d88&ts=32&x=0"
+error code: 1016
+
+02:09:29.581 status code was: 530, expected: 200, response time: 46, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.585 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 46, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.586 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 46, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.586 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:29.587 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 46, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.600 karate.env system property was:  
+02:09:29.601 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:29.616 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.657 response time in milliseconds: 40,39
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 910074309e05eca1-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=i6UegDxajivuf6NDH0r9kyMiPQGuCrBUqRJhlqVCW2r7c2f78Xj8hwobheDZdYWiNE%2FhbM5U%2FM6YRoVCaR39%2Bhe4XKPDVivgtgILAJSqNaiTRhkBmSzYKtpKDAoHm1vYfhkw4I7md0QLfnD%2F0Q%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=5012&min_rtt=4857&rtt_var=2133&sent=3&recv=6&lost=0&retrans=0&sent_bytes=147&recv_bytes=633&delivery_rate=237915&cwnd=250&unsent_bytes=0&cid=7ad24a65e50864a8&ts=19&x=0"
+
+02:09:29.658 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.710 response time in milliseconds: 51,01
+2 < 530
+2 < CF-RAY: 91007430ef822fa1-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=HkKSq4HN%2FzuQFwd8GMGqJLh%2Fpx8srq1v7yBqK4Jf%2BM9FHjn%2FUNjeXISnLe6N9VQnqs2e0tIdFEpD%2FBOn6%2FxjTXVm%2FBSvbgNjrOoZ7PpKjfxzO7zBo1fCB4oCRQ479uTJi5N%2B"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=4345&min_rtt=3843&rtt_var=1949&sent=5&recv=8&lost=0&retrans=0&sent_bytes=2841&recv_bytes=688&delivery_rate=481113&cwnd=239&unsent_bytes=0&cid=fa2b10e6acc0656b&ts=40&x=0"
+error code: 1016
+
+02:09:29.712 status code was: 530, expected: 200, response time: 51, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.714 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 51, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.714 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 51, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.715 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:29.715 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 51, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.734 karate.env system property was:  
+02:09:29.735 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:29.753 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.801 response time in milliseconds: 47,82
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 910074318a7dec89-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=B2NbfPCHxTTCYMSYdbUkyaqJ32RKo8ybe3voMiTIxUaBQqOc3QzRXoWbkwIMTSk7CSg1oFM61K8k5ZgdjZIt9%2BUTUrwjyVrJUGw6P4iUQ%2Bm%2F5cLRYOmdtW4Nkb0Dm5cIANQrQ%2FQ1bRYDWzxqbQ%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=13430&min_rtt=9275&rtt_var=6446&sent=3&recv=6&lost=0&retrans=0&sent_bytes=147&recv_bytes=633&delivery_rate=156549&cwnd=212&unsent_bytes=0&cid=de3f09a997d01121&ts=23&x=0"
+
+02:09:29.805 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.852 response time in milliseconds: 46,89
+2 < 530
+2 < CF-RAY: 91007431d80e2153-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=InHV0cUuN32XCSbQoXHAT6BCYlBreNrEz73ksA%2FPaSyp9%2FNzKPZZGdRtT2bHiDBw04XljW6%2BQBihSd5d22zjq012mppkqVeJur%2FM%2B4Jfyawzk15qjRidMJn6aKDuJX3cmFny"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=4807&min_rtt=3823&rtt_var=2784&sent=5&recv=8&lost=0&retrans=0&sent_bytes=2843&recv_bytes=688&delivery_rate=364137&cwnd=250&unsent_bytes=0&cid=357d1c6677635724&ts=34&x=0"
+error code: 1016
+
+02:09:29.853 status code was: 530, expected: 200, response time: 47, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.854 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 47, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.855 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 47, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.855 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:29.855 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 47, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:29.863 karate.env system property was:  
+02:09:29.864 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:29.877 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:29.946 response time in milliseconds: 42,04
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 910074326e13af92-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=uHz%2FeKd23vopeODTaVwuZzdYXGsKr18BjjL9aHWhnD4ZoLBwXRMxl6steh7jt7g7%2BFDH9gn4w8kI%2BnrRaAomuw4cgs%2BczZox131lTlguOW2R7Q9SYwGmx1BHWe0fhY8u7pqk8Ym2XSApf4wt8Q%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=10245&min_rtt=9724&rtt_var=4688&sent=3&recv=6&lost=0&retrans=0&sent_bytes=147&recv_bytes=633&delivery_rate=104513&cwnd=229&unsent_bytes=0&cid=4889e8f66c9e4907&ts=25&x=0"
+
+02:09:29.949 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:30.030 response time in milliseconds: 80,92
+2 < 530
+2 < CF-RAY: 91007432ee1ff768-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=859W2jH0tpl%2Fk6vJDJ5t8nZTWbAnj6%2F9ixr0hlf%2FLUrMGwikx6VYmrAQ6i0oj34VuAl8%2B%2FJ%2F6NwOfCTeBnnrXuxuLtsgUTYogFlkRDE03SvH6C5EigX%2BJYZJH6N%2Fl1jtBNV3"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=13015&min_rtt=12785&rtt_var=3974&sent=5&recv=8&lost=0&retrans=0&sent_bytes=2842&recv_bytes=688&delivery_rate=205782&cwnd=251&unsent_bytes=0&cid=ad4a5c89a0f94b83&ts=49&x=0"
+error code: 1016
+
+02:09:30.031 status code was: 530, expected: 200, response time: 81, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:30.032 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 81, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:30.033 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 81, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:30.033 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:30.033 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 81, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:30.047 karate.env system property was:  
+02:09:30.047 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:30.058 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:30.096 response time in milliseconds: 37,88
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 910074335c6dcbd6-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=%2FjpK6sM7DlubfpFHmpP6UOIGZg6xIFAg%2BgsakLBN3B7sL03xWZMr38ObfNakJ%2Bo7EVo0httJ1mGOCZPozHn8BGS7XtbYmt0vhi3gptGchAYOggrGGOko5acsvhT67uyjvzWQkzI6gaK3CsAulA%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=5284&min_rtt=4968&rtt_var=2496&sent=3&recv=6&lost=0&retrans=0&sent_bytes=147&recv_bytes=633&delivery_rate=193522&cwnd=244&unsent_bytes=0&cid=8adac7cf09a28f48&ts=23&x=0"
+
+02:09:30.098 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:30.172 response time in milliseconds: 73,89
+2 < 530
+2 < CF-RAY: 91007433c89160cf-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:30 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=2Hh%2BLhblTGAkX%2FCGGRVBJUcdiTCUmQsdRG0ZFVSA%2FaVVsG859Wnop3jmO3iRiNrfaTf%2FLVJvzF0OElG7CbCEAoABv%2BbQi4GFLRum68Mb6462lvcAiGobyrFnNUW8IthKqTtJ"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=4863&min_rtt=3819&rtt_var=3521&sent=6&recv=9&lost=0&retrans=1&sent_bytes=4179&recv_bytes=688&delivery_rate=238501&cwnd=249&unsent_bytes=0&cid=4d26ccbbb372dc36&ts=60&x=0"
+error code: 1016
+
+02:09:30.173 status code was: 530, expected: 200, response time: 74, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:30.175 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 74, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:30.175 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 74, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:30.176 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:30.176 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 74, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:30.207 karate.env system property was:  
+02:09:30.207 >> lock acquired, begin callSingle: classpath:helpers/CreateToken.feature
+02:09:30.233 request:
+1 > POST https://conduit.productionready.io/api/users/login
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 57
+1 > Content-Type: application/json; charset=UTF-8
+1 > Host: conduit.productionready.io
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:31.310 response time in milliseconds: 1076,11
+1 < 307
+1 < Access-Control-Allow-Headers: *
+1 < Access-Control-Allow-Methods: GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE
+1 < Access-Control-Allow-Origin: *
+1 < CF-RAY: 9100743ade54f778-MAD
+1 < Connection: keep-alive
+1 < Content-Length: 0
+1 < Date: Tue, 11 Feb 2025 01:09:31 GMT
+1 < Location: https://api.realworld.io/api/users/login
+1 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+1 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=EeaRNiZvnsDh0wqU4K%2BcX88u9PwISzHtkBWkGpWEDkxVIkLqOr%2BPQZOlDclVpwkDhQieImZQWOVodn62c6zOx%2FdDDilS7IGM6oA2ZETpL99OaaMytf4NFX%2FXYAUzDa6RKJmgRsuoE1hLyysMkg%3D%3D"}],"group":"cf-nel","max_age":604800}
+1 < Server: cloudflare
+1 < Vary: Accept-Encoding
+1 < alt-svc: h3=":443"; ma=86400
+1 < server-timing: cfL4;desc="?proto=TCP&rtt=4883&min_rtt=4831&rtt_var=1916&sent=3&recv=6&lost=0&retrans=0&sent_bytes=147&recv_bytes=633&delivery_rate=276518&cwnd=235&unsent_bytes=0&cid=99c0c36d2892b489&ts=20&x=0"
+
+02:09:31.312 request:
+2 > POST https://conduit.productionready.io/api/users/login
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Content-Length: 57
+2 > Content-Type: application/json; charset=UTF-8
+2 > Host: api.realworld.io
+2 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_231)
+{"user":{"email":"kar1@test.com","password":"Karate123"}}
+
+02:09:31.385 response time in milliseconds: 73,45
+2 < 530
+2 < CF-RAY: 9100743b690d314e-MAD
+2 < Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+2 < Connection: keep-alive
+2 < Content-Length: 16
+2 < Content-Type: text/plain; charset=UTF-8
+2 < Date: Tue, 11 Feb 2025 01:09:32 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:01 GMT
+2 < NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2 < Referrer-Policy: same-origin
+2 < Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=uYm1hQw9LClU4nmtM8rpueErWf9h6XuNhu%2FRoINMXuMDS5XIHNbdJKVZtnQnOeTvTk2q8U%2BJHe2Hs2EcijcFFb%2FXFpAhCr%2Fifxx3tEUpVsC5o0Vr53%2FkIJid4azEVT4UWKNM"}],"group":"cf-nel","max_age":604800}
+2 < Server: cloudflare
+2 < X-Frame-Options: SAMEORIGIN
+2 < alt-svc: h3=":443"; ma=86400
+2 < server-timing: cfL4;desc="?proto=TCP&rtt=9194&min_rtt=7720&rtt_var=4619&sent=5&recv=8&lost=0&retrans=0&sent_bytes=2843&recv_bytes=688&delivery_rate=184662&cwnd=239&unsent_bytes=0&cid=0b9f29818c47bc24&ts=55&x=0"
+error code: 1016
+
+02:09:31.386 status code was: 530, expected: 200, response time: 73, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:31.387 feature call failed: classpath:helpers/CreateToken.feature
+arg: {"apiUrl":"https://conduit.productionready.io/api/","userEmail":"kar1@test.com","userPassword":"Karate123"}
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 73, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:31.388 javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 73, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
+02:09:31.388 failed function body: function() {    
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev';
+  }
+  var config = {
+	  apiUrl: 'https://conduit.productionready.io/api/'
+  }
+
+  if (env == 'dev') {
+    config.userEmail = 'kar1@test.com'
+    config.userPassword = 'Karate123'
+  } 
+  if (env == 'qa') {
+    config.userEmail = 'karate2@test.com'
+    config.userPassword = 'Karate456'
+  }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
+  return config;
+  function fn() {
+    return {};
+  }
+}
+02:09:31.388 evaluation of 'karate-config.js' failed: javascript function call failed: 
+CreateToken.feature:9 - status code was: 530, expected: 200, response time: 73, url: https://conduit.productionready.io/api/users/login, response: error code: 1016
