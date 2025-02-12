@@ -8,7 +8,8 @@ El ejercicio se desarrolla en tres escenarios relacionados con una tienda de mas
 - **Cucumber**: Para definir los Reporting
 - **JUnit**: Framework para la ejecución de pruebas unitarias.
 - **Maven**: Herramienta para la gestión de dependencias y construcción del proyecto.
-
+  
+Nota: la herramienta utilizada en esta prueba ha sido Intellij
 ## Estructura del Proyecto
 
 - **`feature/`**: Contiene los archivos `.feature` que describen los escenarios de prueba.
